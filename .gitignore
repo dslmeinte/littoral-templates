@@ -1,0 +1,11 @@
+# IntelliJ/IDEA:
+/.idea/
+
+# NPM/Yarn:
+/node_modules/
+/package-lock.json
+/yarn.lock
+
+# distribution:
+/dist/
+
