@@ -43,8 +43,8 @@ still top-level, but on a new line
 
 ## TODOs
 
-* Proper test set up, e.g. using `mocha` and `chai`.
 * Publish to NPM (including proper cleaning and ignoring).
+* Proper test set up, e.g. using `mocha` and `chai`.
 * Skip `undefined | null`s.
 * Does an alternative to `npm-run-all` exist (that's better)?
 
