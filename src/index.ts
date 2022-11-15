@@ -6,23 +6,21 @@ type NestedStringFunction<T> = (_: NestedString) => T
 /**
  * Polyfill/shim for ES2019's Array.prototype.flat(..).
  */
-function flatten(nestedString: NestedString): string[] {
-    return Array.isArray(nestedString)
-        ? nestedString.map(flatten).reduce((arrL, arrR) => [ ...arrL, ...arrR ])
+const flatten = (nestedString: NestedString): string[] =>
+    Array.isArray(nestedString)
+        ? nestedString.map(flatten).reduce((arrL, arrR) => [ ...arrL, ...arrR ], [])
         : [ nestedString ]
-}
 
 
 /**
  * @returns {function(*=): *} - a function that maps over a single string using mapString, or an array of strings using mapStrings.
  * If an array is given, that array is completely (i.e.: recursively) flattened first, before the mapStrings function is applied.
  */
-function mapNestedString<T>(mapString: (_: string) => T, mapStrings: (_: string[]) => T) {
-    return (nestedString: NestedString) =>
+const mapNestedString = <T>(mapString: (_: string) => T, mapStrings: (_: string[]) => T) =>
+    (nestedString: NestedString) =>
         Array.isArray(nestedString)
             ? mapStrings(flatten(nestedString))
             : mapString(nestedString)
-}
 
 
 const withNewlineEnsured = (str: string): string => str.charAt(str.length - 1) === '\n' ? str : ( str + "\n")

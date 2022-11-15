@@ -3,6 +3,8 @@
 
 ## 0.2.2
 
+* Fix internal `flatten` function for empty arrays.
+  + Use “fat arrow” syntax everywhere.
 * Improve unit testing setup using Mocha + Chai.
   (No impact on shipped code.)
 

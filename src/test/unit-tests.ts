@@ -31,3 +31,12 @@ still top-level, but on a new line
 
 })
 
+
+describe("asString", () => {
+
+    it("works on empty strings", () => {
+        equal(asString([]), ``)
+    })
+
+})
+
