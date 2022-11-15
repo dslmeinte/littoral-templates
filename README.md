@@ -12,7 +12,7 @@ Instead, templates look as follows:
 ```typescript
 import { asString, indentWith } from "littoral-templates"
 
-const indent = indentWith("\t")     // with apologies to the spaces people...
+const indent = indentWith("    ")
 
 console.log(
     asString([
@@ -35,9 +35,8 @@ This code produces the following text on the JavaScript console:
 ```
 top-level
 still top-level, but on a new line
-        this is indented (1 level)
-                        this is even more indented (3 levels)
-
+    this is indented (1 level)
+            this is even more indented (3 levels)
 ```
 
 

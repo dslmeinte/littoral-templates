@@ -1,6 +1,12 @@
 # CHANGELOG
 
 
+## 0.2.2
+
+* Improve unit testing setup using Mocha + Chai.
+  (No impact on shipped code.)
+
+
 ## 0.2.1
 
 * Declare as a CommonJS module again.
