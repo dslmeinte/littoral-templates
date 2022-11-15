@@ -1,6 +1,12 @@
 # CHANGELOG
 
 
+## 0.2.1
+
+* Declare as a CommonJS module again.
+  (Making it an ES module turns out to not make it work with Deno after all.)
+
+
 ## 0.2.0
 
 * Fix NPM-ignoring.
