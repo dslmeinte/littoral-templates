@@ -7,10 +7,11 @@
 
 # TS:
 /tsconfig.json
-
-# sources:
 /src
 
 # test files:
 /dist/test
+
+# own admin:
+/TODO.md
 

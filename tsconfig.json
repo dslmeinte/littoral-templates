@@ -4,6 +4,7 @@
     "declarationMap": true,
     "strict": true,
     "target": "ES5",
+    "module": "nodenext",
     "sourceMap": true,
     "outDir": "dist",
     "lib": [ "ES2015" ]

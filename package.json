@@ -1,7 +1,8 @@
 {
   "name": "littoral-templates",
-  "version": "0.2.2",
+  "version": "0.3.0",
   "description": "A small JavaScript/TypeScript framework to do templating comfortably using the template literal syntax in either JavaScript or TypeScript.",
+  "type": "module",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
   "scripts": {
@@ -27,12 +28,12 @@
   },
   "homepage": "https://github.com/dslmeinte/littoral-templates#readme",
   "devDependencies": {
-    "@types/chai": "^4.3.4",
-    "@types/mocha": "^10.0.0",
-    "@types/node": "^14.18.33",
-    "chai": "^4.3.7",
-    "mocha": "^10.1.0",
-    "npm-run-all": "^4.1.5",
-    "typescript": "^4.8.4"
+    "@types/chai": "5.0.1",
+    "@types/mocha": "10.0.9",
+    "@types/node": "18.19.64",
+    "chai": "5.1.2",
+    "mocha": "10.8.2",
+    "npm-run-all": "4.1.5",
+    "typescript": "5.6.3"
   }
 }
