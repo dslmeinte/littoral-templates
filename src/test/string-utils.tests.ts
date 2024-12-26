@@ -1,7 +1,7 @@
 import {assert} from "chai"
-const {deepEqual} = assert
+const {deepEqual, equal} = assert
 
-import {commaSeparated} from "../string-utils.js"
+import {commaSeparated, lineIndenter} from "../string-utils.js"
 
 
 describe("commaSeparated", () => {
@@ -24,6 +24,31 @@ describe("commaSeparated", () => {
         deepEqual(
             commaSeparated([`1`, `2`, `3`]),
             [`1,`, `2,`, `3`]
+        )
+    })
+
+})
+
+
+describe("lineIndenter", () => {
+
+    it("works for an empty string", () => {
+        equal(
+            lineIndenter("@")(""),
+            ""
+        )
+    })
+
+    it("works for an multi-line string with empty lines", () => {
+        equal(
+            lineIndenter("@")(`1
+
+    2
+`),
+            `@1
+
+@    2
+`
         )
     })
 

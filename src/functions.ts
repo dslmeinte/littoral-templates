@@ -1,5 +1,5 @@
 import {Template} from "./types.js"
-import {repeat, withNewlineEnsured} from "./string-utils.js"
+import {lineIndenter, repeat, withNewlineEnsured} from "./string-utils.js"
 
 
 /**
@@ -13,29 +13,15 @@ const flatten = (template: Template): string[] => {
         return template.map(flatten).reduce((arrL, arrR) => [...arrL, ...arrR], [])
     }
     return [template]
+    // TODO  undefined|null -> []; split single string on newlines (already here)?
 }
-
-/**
- * @returns {function(*=): *} - a function that maps over a single string using mapString, or an array of strings using mapStrings.
- * If an array is given, that array is completely (i.e.: recursively) flattened first, before the mapStrings function is applied.
- * (This function is only used internally.)
- */
-const mapTemplate = <T>(mapString: (_: string) => T, mapStrings: (_: string[]) => T) =>
-    (template: Template) => {
-        if (typeof template === "function") {
-            return mapStrings(flatten(template))
-        }
-        if (Array.isArray(template)) {
-            return mapStrings(flatten(template))
-        }
-        return mapString(template)
-    }
 
 
 /**
  * @returns {string} - the given template joined as one string, taking care of proper newline endings.
  */
-export const asString = mapTemplate(withNewlineEnsured, (strings) => strings.map(withNewlineEnsured).join(""))
+export const asString = (template: Template): string =>
+    flatten(template).map(withNewlineEnsured).join("")
 
 
 /**
@@ -55,11 +41,9 @@ export const asString = mapTemplate(withNewlineEnsured, (strings) => strings.map
  * </pre>
  */
 export const indentWith = (singleIndentation: string) =>
-    (indentLevel: number = 1): (_: Template) => string[] => {
-        const indentationPrefix = repeat(singleIndentation, indentLevel)
-        const indentLine = (str: string): string => str.split("\n").map((line) => (line.length > 0 ? indentationPrefix : "") + line).join("\n")
-        return mapTemplate((string: string): string[] => [indentLine(string)], (strings: string[]) => strings.map(indentLine))
-    }
+    (indentLevel: number = 1) =>
+        (template: Template) =>
+            flatten(template).map(lineIndenter(repeat(singleIndentation, indentLevel)))
 
 
 /**
@@ -86,13 +70,14 @@ export const indentWith = (singleIndentation: string) =>
  * is only evaluated (/run) when the boolean condition is true.
  * That is useful in case the stuff to include produces side effects.
  */
-export const when = (bool: boolean)=>
+export const when = (bool: boolean): ((whenResult: Template) => Template) =>
     bool
-        ? (whenResult: Template) =>
+        ? (whenResult) =>
             typeof whenResult === "function"
                 ? whenResult()
                 : whenResult
-        : (_whenResult: Template) => []
+                    // TODO  use flatten instead?
+        : (_) => []
 
 
 /**
