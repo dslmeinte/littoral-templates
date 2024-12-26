@@ -1,5 +1,9 @@
 # CHANGELOG
 
+## 0.4.0
+
+* Thunks returning a `Template` are now `Template`s as well.
+
 
 ## 0.3.0
 
