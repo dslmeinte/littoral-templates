@@ -10,6 +10,16 @@ describe("asString", () => {
         equal(asString([]), ``)
     })
 
+    it("works on templates of the form [<single-line string>]", () => {
+        equal(asString(["foo"]), `foo\n`)
+    })
+
+    it("works on templates of the form [<multi-line string>]", () => {
+        equal(asString([`foo
+
+bar`]), `foo\n\nbar\n`)
+    })
+
 })
 
 
@@ -17,7 +27,8 @@ describe("conditional inclusion - when syntax", () => {
 
     it("works for a non-thunk 2nd (Curried) argument", () => {
         deepEqual(when(false)("foo"), [])
-        deepEqual(when(true)("bar"), "bar")
+        deepEqual(when(true)("bar"), ["bar"])
+        equal(asString(when(true)("bar")), `bar\n`)
     })
 
     it("works for a thunk 2nd (Curried) argument", () => {
@@ -30,8 +41,13 @@ describe("conditional inclusion - when syntax", () => {
         deepEqual(when(false)(thunk), [])
         equal(ran, false)
 
-        deepEqual(when(true)(thunk), "foo")
+        deepEqual(when(true)(thunk), ["foo"])
+        equal(asString(when(true)(thunk)), `foo\n`)
         equal(ran, true)
+    })
+
+    it("works for a variadic 2nd (Curried) argument", () => {
+        deepEqual(when(true)("foo", "bar"), ["foo", "bar"])
     })
 
     it("code fragment 1 from README works", () => {

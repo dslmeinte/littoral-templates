@@ -13,7 +13,6 @@ const flatten = (template: Template): string[] => {
         return template.map(flatten).reduce((arrL, arrR) => [...arrL, ...arrR], [])
     }
     return template.split("\n")
-    // TODO  undefined|null -> []?
 }
 
 
@@ -46,7 +45,7 @@ export const indentWith = (singleIndentation: string) =>
         const prefix = repeat(singleIndentation, indentLevel)
         const indenter = (line: string) => line.length > 0 ? (prefix + line) : line
         return (...templates: Template[]) =>
-            flatten(templates).map(indenter)
+            flatten(templates).map(indenter)    // Note: Template[] has type Template as well!
     }
 
 
@@ -73,14 +72,12 @@ export const indentWith = (singleIndentation: string) =>
  * In the latter case, it's guaranteed that the thunk ({@see https://en.wikipedia.org/wiki/Thunk})
  * is only evaluated (/run) when the boolean condition is true.
  * That is useful in case the stuff to include produces side effects.
+ *
+ * Note that the second Curried argument is variadic, so it doesn't require array brackets (`[]`).
  */
-export const when = (bool: boolean): ((whenResult: Template) => Template) =>
+export const when = (bool: boolean): ((...whenResults: Template[]) => Template) =>
     bool
-        ? (whenResult) =>
-            typeof whenResult === "function"
-                ? whenResult()
-                : whenResult
-                    // TODO  use flatten instead?
+        ? (...whenResults: Template[]) => flatten(whenResults)  // (need to be explicit here, or it doesn't work – despite having specified the return type...)
         : (_) => []
 
 

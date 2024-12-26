@@ -3,6 +3,7 @@
 ## 0.4.0
 
 * Thunks returning a `Template` are now `Template`s as well.
+* The 3rd (Curried) argument of `indentWith`, and the 2nd (Curried) argument of `when` are now variadic.
 
 
 ## 0.3.0
