@@ -29,14 +29,3 @@ export const withNewlineEnsured = (str: string): string =>
         ? str
         : ( str + "\n")
 
-/**
- * Returns a function that indents all lines in the given string with the given prefix.
- */
-export const lineIndenter = (prefix: string) =>
-    (str: string) =>
-        str
-            .split("\n")
-            .map((line) => (line.length > 0 ? prefix : "") + line)
-            .join("\n")
-// TODO  could also return string[] instead
-

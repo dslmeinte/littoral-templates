@@ -1,9 +1,9 @@
 import {Template} from "./types.js"
-import {lineIndenter, repeat, withNewlineEnsured} from "./string-utils.js"
+import {repeat, withNewlineEnsured} from "./string-utils.js"
 
 
 /**
- * Polyfill/shim for ES2019's Array.prototype.flat(..).
+ * “Flattens” the given template to an array of strings, each of which represent exactly one line.
  */
 const flatten = (template: Template): string[] => {
     if (typeof template === "function") {
@@ -12,8 +12,8 @@ const flatten = (template: Template): string[] => {
     if (Array.isArray(template)) {
         return template.map(flatten).reduce((arrL, arrR) => [...arrL, ...arrR], [])
     }
-    return [template]
-    // TODO  undefined|null -> []; split single string on newlines (already here)?
+    return template.split("\n")
+    // TODO  undefined|null -> []?
 }
 
 
