@@ -25,7 +25,7 @@ export const asString = (template: Template): string =>
 
 
 /**
- * @returns {function} - a function to instantiate a function to indent a sub-template.
+ * @returns a function to instantiate a function to indent a sub-template.
  * The function always returns an array of strings.
  *
  * Its usage looks as follows:
@@ -34,6 +34,7 @@ export const asString = (template: Template): string =>
  *     `this is indented 2 levels`
  * ])
  * </pre>
+ * Note that the third Curried argument is variadic, so the array brackets (`[]`) can be elided.
  *
  * Usually, one sets up the following function constant before:
  * <pre>
@@ -41,9 +42,12 @@ export const asString = (template: Template): string =>
  * </pre>
  */
 export const indentWith = (singleIndentation: string) =>
-    (indentLevel: number = 1) =>
-        (template: Template) =>
-            flatten(template).map(lineIndenter(repeat(singleIndentation, indentLevel)))
+    (indentLevel: number = 1) => {
+        const prefix = repeat(singleIndentation, indentLevel)
+        const indenter = (line: string) => line.length > 0 ? (prefix + line) : line
+        return (...templates: Template[]) =>
+            flatten(templates).map(indenter)
+    }
 
 
 /**

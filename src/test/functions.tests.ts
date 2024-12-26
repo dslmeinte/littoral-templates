@@ -1,7 +1,7 @@
 import {assert} from "chai"
 const {deepEqual, equal} = assert
 
-import {asString, when, withNewlineAppended} from "../index.js"
+import {asString, indentWith, when, withNewlineAppended} from "../index.js"
 
 
 describe("asString", () => {
@@ -73,4 +73,13 @@ describe("withNewlineAppended", () => {
 
 })
 
+
+describe("indentWith", () => {
+
+    it("works for variadic arguments", () => {
+        const indented = indentWith("@")(1)
+        deepEqual(indented("foo", indented("bar")), ["@foo", "@@bar"])
+    })
+
+})
 
