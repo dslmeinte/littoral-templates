@@ -1,7 +1,7 @@
 import {assert} from "chai"
 const {deepEqual} = assert
 
-import {commaSeparated} from "../string-utils.js"
+import {commaSeparated} from "../index.js"
 
 
 describe("commaSeparated", () => {

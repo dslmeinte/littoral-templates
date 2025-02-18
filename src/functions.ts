@@ -1,5 +1,5 @@
-import {Template} from "./types.js"
-import {repeat, withNewlineEnsured} from "./string-utils.js"
+import {repeat, Template} from "./index.js"
+import {withNewlineEnsured} from "./internals.js"
 
 
 /**

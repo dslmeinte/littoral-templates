@@ -1,7 +1,7 @@
 import {assert} from "chai"
 const {equal} = assert
 
-import {asString, indentWith} from "../functions.js"
+import {asString, indentWith} from "../index.js"
 
 
 describe("example in README", () => {

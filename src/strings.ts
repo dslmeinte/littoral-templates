@@ -6,6 +6,7 @@ export const commaSeparated = (strings: string[])=>
 
 /**
  * Polyfill/shim for ES2015's String.prototype.repeat which doesn't work for some reason in the test...
+ * (Implementation uses the binary representation of n.)
  */
 export const repeat = (str: string, n: number): string => {
     let result = ""
@@ -21,11 +22,6 @@ export const repeat = (str: string, n: number): string => {
     return result
 }
 
-/**
- * Ensures that the given string ends with a newline (`\n`), adding one if necessary.
- */
-export const withNewlineEnsured = (str: string): string =>
-    str.charAt(str.length - 1) === '\n'
-        ? str
-        : ( str + "\n")
+
+// TODO  more common string utils, e.g. withFirst{Upper|Lower}, etc.
 
