@@ -1,5 +1,4 @@
-import {assert} from "chai"
-const {equal} = assert
+import {expect} from "chai"
 
 import {asString, indentWith} from "../index.js"
 
@@ -19,9 +18,7 @@ describe("example in README", () => {
             ])
         ])
         console.log(actual)
-        equal(
-            actual,
-            `top-level
+        expect(actual).to.equal(`top-level
 still top-level, but on a new line
     this is indented (1 level)
             this is even more indented (3 levels)

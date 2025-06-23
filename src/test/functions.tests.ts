@@ -1,5 +1,4 @@
-import {assert} from "chai"
-const {deepEqual, equal} = assert
+import {expect} from "chai"
 
 import {asString, indentWith, when, withNewlineAppended} from "../index.js"
 
@@ -7,17 +6,19 @@ import {asString, indentWith, when, withNewlineAppended} from "../index.js"
 describe("asString", () => {
 
     it("works on empty strings", () => {
-        equal(asString([]), ``)
+        expect(asString([])).to.equal(``)
     })
 
     it("works on templates of the form [<single-line string>]", () => {
-        equal(asString(["foo"]), `foo\n`)
+        expect(asString(["foo"])).to.equal(`foo\n`)
     })
 
     it("works on templates of the form [<multi-line string>]", () => {
-        equal(asString([`foo
+        expect(
+            asString([`foo
 
-bar`]), `foo\n\nbar\n`)
+bar`]))
+        .to.equal(`foo\n\nbar\n`)
     })
 
 })
@@ -26,9 +27,9 @@ bar`]), `foo\n\nbar\n`)
 describe("conditional inclusion - when syntax", () => {
 
     it("works for a non-thunk 2nd (Curried) argument", () => {
-        deepEqual(when(false)("foo"), [])
-        deepEqual(when(true)("bar"), ["bar"])
-        equal(asString(when(true)("bar")), `bar\n`)
+        expect(when(false)("foo")).to.deep.equal([])
+        expect(when(true)("bar")).to.deep.equal(["bar"])
+        expect(asString(when(true)("bar"))).to.equal(`bar\n`)
     })
 
     it("works for a thunk 2nd (Curried) argument", () => {
@@ -38,21 +39,21 @@ describe("conditional inclusion - when syntax", () => {
             return "foo"
         }
 
-        deepEqual(when(false)(thunk), [])
-        equal(ran, false)
+        expect(when(false)(thunk)).to.deep.equal([])
+        expect(ran).to.equal(false)
 
-        deepEqual(when(true)(thunk), ["foo"])
-        equal(asString(when(true)(thunk)), `foo\n`)
-        equal(ran, true)
+        expect(when(true)(thunk)).to.deep.equal(["foo"])
+        expect(asString(when(true)(thunk))).to.equal(`foo\n`)
+        expect(ran).to.equal(true)
     })
 
     it("works for a variadic 2nd (Curried) argument", () => {
-        deepEqual(when(true)("foo", "bar"), ["foo", "bar"])
+        expect(when(true)("foo", "bar")).to.deep.equal(["foo", "bar"])
     })
 
     it("code fragment 1 from README works", () => {
         const n = 3
-        equal(
+        expect(
             asString([
                 `foo`,
                 `bar`,
@@ -60,13 +61,12 @@ describe("conditional inclusion - when syntax", () => {
                     `lizard`,
                     `sfdeljknesv`
                 ])
-            ]),
-            `foo
+            ])
+        ).to.equal(`foo
 bar
 lizard
 sfdeljknesv
-`
-        )
+`)
     })
 
 })
@@ -75,9 +75,9 @@ sfdeljknesv
 describe("withNewlineAppended", () => {
 
     it("works for a fairly trivial example", () => {
-        equal(
-            asString([1, 2, 3].map(withNewlineAppended((num) => `${num}`))),
-            `1
+        expect(
+            asString([1, 2, 3].map(withNewlineAppended((num) => `${num}`)))
+        ).to.equal(`1
 
 2
 
@@ -94,7 +94,9 @@ describe("indentWith", () => {
 
     it("works for variadic arguments", () => {
         const indented = indentWith("@")(1)
-        deepEqual(indented("foo", indented("bar")), ["@foo", "@@bar"])
+        expect(
+            indented("foo", indented("bar"))
+        ).to.deep.equal(["@foo", "@@bar"])
     })
 
 })
