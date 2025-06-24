@@ -1,5 +1,5 @@
 import {repeat, Template} from "./index.js"
-import {withNewlineEnsured} from "./internals.js"
+import {withEOLEnsured} from "./internals.js"
 
 
 /**
@@ -12,7 +12,7 @@ const flatten = (template: Template): string[] => {
     if (Array.isArray(template)) {
         return template.map(flatten).reduce((arrL, arrR) => [...arrL, ...arrR], [])
     }
-    return template.split("\n")
+    return template.split(/\r*\n/)
 }
 
 
@@ -20,7 +20,7 @@ const flatten = (template: Template): string[] => {
  * @returns {string} - the given template joined as one string, taking care of proper newline endings.
  */
 export const asString = (template: Template): string =>
-    flatten(template).map(withNewlineEnsured).join("")
+    flatten(template).map(withEOLEnsured).join("")
 
 
 /**
@@ -47,6 +47,23 @@ export const indentWith = (singleIndentation: string) =>
         return (...templates: Template[]) =>
             flatten(templates).map(indenter)    // Note: Template[] has type Template as well!
     }
+
+
+/**
+ * An enumeration of common indentation styles.
+ * Use these in a type-safe way as follows, e.g. for “1 tab”:
+ *
+ * ```
+ * const indent = indentWith(commonIndentations["1 tab"])
+ *
+ * indent([`foo`])
+ * ```
+ */
+export const commonIndentations = {
+    "2 spaces": "  ",
+    "4 spaces": "    ",
+    "1 tab": "\t"
+} as const
 
 
 /**

@@ -4,6 +4,10 @@
 
 * Thunks returning a `Template` are now `Template`s as well.
 * The 3rd (Curried) argument of `indentWith`, and the 2nd (Curried) argument of `when` are now variadic.
+* The EOL string can now be set explicitly (with the `setEOLExplicitly` function), or be taken from the OS (with the asynchronous `setEOLFromOS` function). 
+  This EOL string is then used to insert newlines, and – to some extent – normalize them.
+* An object constant `commonIndentations` is added with the most common indentation styles: “2 spaces”, “4 spaces”, and “1 tab”.
+* The `flatten` function now splits on `/\r*\n/` rather than just `/\n/`.
 
 
 ## 0.3.0
