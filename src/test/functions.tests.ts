@@ -1,27 +1,6 @@
 import {expect} from "chai"
 
-import {asString, indentWith, when, withNewlineAppended} from "../index.js"
-
-
-describe("asString", () => {
-
-    it("works on empty strings", () => {
-        expect(asString([])).to.equal(``)
-    })
-
-    it("works on templates of the form [<single-line string>]", () => {
-        expect(asString(["foo"])).to.equal(`foo\n`)
-    })
-
-    it("works on templates of the form [<multi-line string>]", () => {
-        expect(
-            asString([`foo
-
-bar`]))
-        .to.equal(`foo\n\nbar\n`)
-    })
-
-})
+import {asString, eol, when, withEmptyLineAppended} from "../index-internal.js"
 
 
 describe("conditional inclusion - when syntax", () => {
@@ -72,11 +51,11 @@ sfdeljknesv
 })
 
 
-describe("withNewlineAppended", () => {
+describe("withEmptyLineAppended", () => {
 
     it("works for a fairly trivial example", () => {
         expect(
-            asString([1, 2, 3].map(withNewlineAppended((num) => `${num}`)))
+            asString([1, 2, 3].map(withEmptyLineAppended((num) => `${num}`)))
         ).to.equal(`1
 
 2
@@ -85,18 +64,6 @@ describe("withNewlineAppended", () => {
 
 `
         )
-    })
-
-})
-
-
-describe("indentWith", () => {
-
-    it("works for variadic arguments", () => {
-        const indented = indentWith("@")(1)
-        expect(
-            indented("foo", indented("bar"))
-        ).to.deep.equal(["@foo", "@@bar"])
     })
 
 })

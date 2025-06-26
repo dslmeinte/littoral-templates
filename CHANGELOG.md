@@ -4,10 +4,12 @@
 
 * Thunks returning a `Template` are now `Template`s as well.
 * The 3rd (Curried) argument of `indentWith`, and the 2nd (Curried) argument of `when` are now variadic.
-* The EOL string can now be set explicitly (with the `setEOLExplicitly` function), or be taken from the OS (with the asynchronous `setEOLFromOS` function). 
-  This EOL string is then used to insert newlines, and – to some extent – normalize them.
-* An object constant `commonIndentations` is added with the most common indentation styles: “2 spaces”, “4 spaces”, and “1 tab”.
-* The `flatten` function now splits on `/\r*\n/` rather than just `/\n/`.
+* The EOL style can be taken from the OS, using the asynchronous `setEOLStyleFromOS` function.
+  The `asString` returns a string that uses that EOL style *exclusively*.
+  Multi-line strings inside a template are therefore now split on `/\r*\n/` rather than just `/\n/`, so that `asString` effectively normalizes EOL style.
+* The `withNewlineAppended` function has been renamed to `withEmptyLineAppended`.
+  (The former is kept as a legacy alias.)
+* An object constant `commonIndentations` is added and exposed which holds the most common indentation styles: “2 spaces”, “4 spaces”, and “1 tab”.
 
 
 ## 0.3.0
@@ -15,9 +17,8 @@
 * Turn the package into an ESM module (back again).
   (Should work with Deno in the meanwhile.)
 * Update dependencies: no impact on shipped code.
-* Add functions: `when`, `withNewlineAppended`, and `commaSeparated`.
-* Rename `NestedString` to `Template`, leaving `NestedString` as an alias.
-  This is  not a breaking change, but I might deprecate and remove `NestedString` in the future.
+* Add functions: `when`, `withEmptyLineAppended`, and `commaSeparated`.
+* Rename `NestedString` to `Template`, leaving `NestedString` as a legacy alias, which might be deprecated and removed in the future.
 * Add {T|J}SDoc.
 
 

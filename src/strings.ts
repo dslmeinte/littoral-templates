@@ -1,4 +1,8 @@
 /**
+ * Purely string-related functions.
+ */
+
+/**
  * @return the given array of strings but with commas added after each string except the last one.
  */
 export const commaSeparated = (strings: string[])=>
@@ -7,6 +11,7 @@ export const commaSeparated = (strings: string[])=>
 /**
  * Polyfill/shim for ES2015's String.prototype.repeat which doesn't work for some reason in the test...
  * (Implementation uses the binary representation of n.)
+ * Note: doesn't need to be exposed.
  */
 export const repeat = (str: string, n: number): string => {
     let result = ""

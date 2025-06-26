@@ -1,6 +1,6 @@
 import {expect} from "chai"
 
-import {commaSeparated} from "../index.js"
+import {commaSeparated} from "../index-internal.js"
 
 
 describe("commaSeparated", () => {

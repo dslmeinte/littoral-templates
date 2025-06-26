@@ -1,70 +1,8 @@
-import {repeat, Template} from "./index.js"
-import {withEOLEnsured} from "./internals.js"
-
-
 /**
- * “Flattens” the given template to an array of strings, each of which represent exactly one line.
+ * Non-primitive functions on the {@link Template} type.
  */
-const flatten = (template: Template): string[] => {
-    if (typeof template === "function") {
-        return flatten(template())
-    }
-    if (Array.isArray(template)) {
-        return template.map(flatten).reduce((arrL, arrR) => [...arrL, ...arrR], [])
-    }
-    return template.split(/\r*\n/)
-}
 
-
-/**
- * @returns {string} - the given template joined as one string, taking care of proper newline endings.
- */
-export const asString = (template: Template): string =>
-    flatten(template).map(withEOLEnsured).join("")
-
-
-/**
- * @returns a function to instantiate a function to indent a sub-template.
- * The function always returns an array of strings.
- *
- * Its usage looks as follows:
- * <pre>
- * indentWith("  ")(2)([
- *     `this is indented 2 levels`
- * ])
- * </pre>
- * Note that the third Curried argument is variadic, so the array brackets (`[]`) can be elided.
- *
- * Usually, one sets up the following function constant before:
- * <pre>
- * const indent = indentWith("  ")
- * </pre>
- */
-export const indentWith = (singleIndentation: string) =>
-    (indentLevel: number = 1) => {
-        const prefix = repeat(singleIndentation, indentLevel)
-        const indenter = (line: string) => line.length > 0 ? (prefix + line) : line
-        return (...templates: Template[]) =>
-            flatten(templates).map(indenter)    // Note: Template[] has type Template as well!
-    }
-
-
-/**
- * An enumeration of common indentation styles.
- * Use these in a type-safe way as follows, e.g. for “1 tab”:
- *
- * ```
- * const indent = indentWith(commonIndentations["1 tab"])
- *
- * indent([`foo`])
- * ```
- */
-export const commonIndentations = {
-    "2 spaces": "  ",
-    "4 spaces": "    ",
-    "1 tab": "\t"
-} as const
-
+import {flattened, Template} from "./index-internal.js"
 
 /**
  * Allows for the following syntax:
@@ -94,13 +32,19 @@ export const commonIndentations = {
  */
 export const when = (bool: boolean): ((...whenResults: Template[]) => Template) =>
     bool
-        ? (...whenResults: Template[]) => flatten(whenResults)  // (need to be explicit here, or it doesn't work – despite having specified the return type...)
+        ? (...whenResults: Template[]) => flattened(whenResults)  // (need to be explicit here, or it doesn't work – despite having specified the return type...)
         : (_) => []
 
 
 /**
- * @return a function that composes the given template function with the action of "adding a newline after".
+ * @return a function that composes the given template function with the action of "adding an empty line after".
  */
-export const withNewlineAppended = <T>(templateFunc: (t: T) => Template) =>
+export const withEmptyLineAppended = <T>(templateFunc: (t: T) => Template) =>
     (t: T) => [templateFunc(t), ``]
+
+/**
+ * A legacy alias of {@link withEmptyLineAppended}.
+ * Note: this function might be deprecated and removed (per a major version) in the future.
+ */
+export const withNewlineAppended = withEmptyLineAppended
 
