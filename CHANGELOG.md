@@ -5,11 +5,21 @@
 * Thunks returning a `Template` are now `Template`s as well.
 * The 3rd (Curried) argument of `indentWith`, and the 2nd (Curried) argument of `when` are now variadic.
 * The EOL style can be taken from the OS, using the asynchronous `setEOLStyleFromOS` function.
-  The `asString` returns a string that uses that EOL style *exclusively*.
+  The `asString` function now returns a string that uses that EOL style *exclusively*.
   Multi-line strings inside a template are therefore now split on `/\r*\n/` rather than just `/\n/`, so that `asString` effectively normalizes EOL style.
 * The `withNewlineAppended` function has been renamed to `withEmptyLineAppended`.
   (The former is kept as a legacy alias.)
 * An object constant `commonIndentations` is added and exposed which holds the most common indentation styles: “2 spaces”, “4 spaces”, and “1 tab”.
+* Updated the [README](./README.md) significantly!
+
+*Note*: `asString` now behaves more consistently on EOLs, meaning that existing templates might behave differently, particularly when using multi-line strings (nested) inside templates.
+(Also see the updated [README](./README.md).)
+Specifically: it’s no longer necessary – or even useful/desirable – to have multi-line strings ending in a bare EOL in your template code, because you shouldn't expect the following to evaluate to `"foo\n"`:
+
+```javascript
+asString([`foo
+`])
+```
 
 
 ## 0.3.0

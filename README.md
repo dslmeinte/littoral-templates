@@ -39,6 +39,7 @@ console.log(
 
 The `indent` function is a function that takes one argument: the indentation level — let’s call that _n_.
 It then returns a *template function* that takes a template as its argument, and returns a template that is indented to indentation level _n_, using 2 spaces for each indentation.
+(A _template function_ is any function that produces an instance of `Template`.)
 Defining the `indent` function uses the `indentWith` function.
 
 This code produces the following text on the JavaScript console:
@@ -136,9 +137,7 @@ An example of that would be to keep track of imports that have to appear before 
 
 Other convenience functions are:
 
-* `withEmptyLineAppended`: Wrap this around a template function (see definition below) to produce a template function that adds an empty line after any item fed to the original template function.
-
-    A _template function_ is any function that produces an instance of `Template`.
+* `withEmptyLineAppended`: Wrap this around a template function to produce a template function that adds an empty line after any item fed to the original template function.
 
     An example of the usage of `withEmptyLineAppended` is
 
@@ -167,8 +166,8 @@ Other convenience functions are:
 
 ### EOLs
 
-EOLs – AKA “newlines” or “line endings” – vary between OS's: Windows uses `crlf` EOL style – `\r\n` –, while essentially all other mainstream OS's use `lf` style – `\n`.
-Not taking that into account can cause content being generated differently across OS's, potentially confusing tools like Git — especially if these are not configured correctly.
+EOLs – AKA “newlines” or “line endings” – vary between OS’s: Windows uses `crlf` EOL style – `\r\n` –, while essentially all other mainstream OS’s use `lf` style – `\n`.
+Not taking that into account can cause content being generated differently across OS’s, potentially confusing tools like Git — especially if these are not configured correctly.
 Since generated content is often large, this causes additional confusion and friction in the software development process.
 
 To prevent such issues, you can set the EOL style by calling the `setEOLStyleFromOS` function before any calls to `asString`.
@@ -198,6 +197,8 @@ asString([`foo
 ```
 
 evaluates to `"foo<eol><eol>"`.
+Because of this, it’s usually not a good idea to have multi-line strings ending with EOLs of their own in your template code.
+Moreover, because multi-line strings break indentation, they’re probably not great to have anyway.
 
 Splitting is done on *EOLs of any style*, so this *effectively normalizes* EOLs, meaning that even if multi-line strings use different EOL, `asString` will only use the set EOL style.
 
@@ -207,7 +208,7 @@ Templates **compose** nicely, and predictably, e.g.:
 asString([t1, t2]) === `${asString(t1)}${asString(t2)}`
 ```
 
-The expression `asString([])` evaluates to the empty string, which both satisfies the property above, and is useful as a “nil” template that doesn't result in a new/empty line in the output.
+The expression `asString([])` evaluates to the empty string, which both satisfies the property above, and is useful as a “nil” template that doesn’t result in a new/empty line in the output.
 
 
 ## Package name
