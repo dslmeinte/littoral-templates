@@ -15,3 +15,7 @@
 # own admin:
 /TODO.md
 
+# aux. config:
+/.editorconfig
+/.eslintrc.js
+
