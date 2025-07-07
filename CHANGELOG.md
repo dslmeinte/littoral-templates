@@ -1,5 +1,11 @@
 # CHANGELOG
 
+## 0.4.1
+
+* The `setEOLStyleFromOS` is now synchronous.
+  This might cause warnings in existing code, but makes the function easier to work with.
+
+
 ## 0.4.0
 
 * Thunks returning a `Template` are now `Template`s as well.
@@ -10,7 +16,7 @@
 * The `withNewlineAppended` function has been renamed to `withEmptyLineAppended`.
   (The former is kept as a legacy alias.)
 * An object constant `commonIndentations` is added and exposed which holds the most common indentation styles: “2 spaces”, “4 spaces”, and “1 tab”.
-* Updated the [README](./README.md) significantly!
+* Significant updates to the [README](./README.md)!
 
 *Note*: `asString` now behaves more consistently on EOLs, meaning that existing templates might behave differently, particularly when using multi-line strings (nested) inside templates.
 (Also see the updated [README](./README.md).)

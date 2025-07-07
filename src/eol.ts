@@ -2,6 +2,8 @@
  * EOL-related constants and functions.
  */
 
+import {EOL} from "os"
+
 /**
  * Common EOL styles.
  */
@@ -20,10 +22,9 @@ export let eol: string = eolStyles.lf
 /**
  * Sets the EOL to the OS-dependent value.
  */
-export const setEOLStyleFromOS = async (): Promise<void> =>
-    import("os").then((os) => {
-        eol = os.EOL
-    })
+export const setEOLStyleFromOS = () => {
+    eol = EOL
+}
 
 
 /**
