@@ -15,9 +15,11 @@ describe("EOL setting", () => {
         expect(eol).to.equal(randomEOL)
     })
 
-    it("lets itself be set from the OS", async () => {
-        setEOLStyleFromOS()
-        expect(eol === eolStyles.lf || eol === eolStyles.crlf).to.be.true
+    it("lets itself be set from the OS", async function () {
+        await setEOLStyleFromOS()
+            .then(() => {
+                expect(eol === eolStyles.lf || eol === eolStyles.crlf).to.be.true
+            })
     })
 
 })

@@ -1,5 +1,12 @@
 # CHANGELOG
 
+## 0.4.2
+
+* Synchronous style of `setEOLStyleFromOS` caused problems with bundlers — in particular: Vite.
+  That function is now asynchronous again, so should typically be `await`ed.
+  It also should give warnings on the console when `setEOLStyleFromOS` is called when running in a browser.
+
+
 ## 0.4.1
 
 * The `setEOLStyleFromOS` is now synchronous.
