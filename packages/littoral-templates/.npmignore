@@ -1,0 +1,7 @@
+# TS:
+/tsconfig.json
+/src
+
+# test files:
+/dist/test
+

@@ -1,0 +1,48 @@
+{
+    "name": "littoral-templates",
+    "version": "0.4.2",
+    "description": "A small JavaScript/TypeScript framework to do templating comfortably using the template literal syntax in either JavaScript or TypeScript",
+    "license": "MIT",
+    "author": "Meinte Boersma",
+    "keywords": [
+        "template",
+        "engine"
+    ],
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/dslmeinte/littoral-templates.git"
+    },
+    "bugs": {
+        "url": "https://github.com/dslmeinte/littoral-templates/issues"
+    },
+    "homepage": "https://github.com/dslmeinte/littoral-templates#readme",
+    "type": "module",
+    "main": "dist/index.js",
+    "types": "dist/index.d.ts",
+    "scripts": {
+        "build": "tsc",
+        "watch-build": "tsc --watch",
+        "clean": "rm -rf dist node_modules",
+        "pretest": "npm run build",
+        "test": "mocha dist/test/*.js",
+        "watch-test": "mocha --watch dist/test/*.js",
+        "lint": "eslint src",
+        "prep:pre-release": "npm run clean && npm install && npm test",
+        "prerelease": "npm run prep:pre-release",
+        "release": "npm publish",
+        "prerelease-alpha": "npm run prep:pre-release",
+        "release-alpha": "npm publish --tag beta",
+        "prerelease-beta": "npm run prep:pre-release",
+        "release-beta": "npm publish --tag beta"
+    },
+    "devDependencies": {
+        "@types/chai": "5.2.2",
+        "@types/mocha": "10.0.10",
+        "@types/node": "18.19.112",
+        "@typescript-eslint/eslint-plugin": "6.21.0",
+        "@typescript-eslint/parser": "6.21.0",
+        "chai": "5.2.0",
+        "mocha": "10.8.2",
+        "typescript": "5.3.3"
+    }
+}
