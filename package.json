@@ -1,6 +1,6 @@
 {
     "name": "littoral-templates-packages",
-    "version": "0.4.2",
+    "version": "0.5.0-dev",
     "description": "A small JavaScript/TypeScript framework to do templating comfortably using the template literal syntax in either JavaScript or TypeScript",
     "license": "MIT",
     "author": "Meinte Boersma",

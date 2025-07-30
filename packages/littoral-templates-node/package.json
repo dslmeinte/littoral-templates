@@ -1,6 +1,6 @@
 {
     "name": "littoral-templates-node",
-    "version": "0.4.2",
+    "version": "0.5.0",
     "description": "Node.js-specific addition to littoral-templates",
     "license": "MIT",
     "author": "Meinte Boersma",
@@ -22,6 +22,6 @@
     },
     "dependencies": {
         "@types/node": "24.1.0",
-        "littoral-templates": "0.4.2"
+        "littoral-templates": "0.5.0"
     }
 }
