@@ -15,7 +15,8 @@
         "lint": "eslint src"
     },
     "dependencies": {
-        "littoral-templates": "*"
+        "littoral-templates": "*",
+        "littoral-templates-node": "*"
     },
     "devDependencies": {
         "@types/node": "24.1.0",

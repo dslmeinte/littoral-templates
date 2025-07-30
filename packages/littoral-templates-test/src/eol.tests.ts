@@ -1,6 +1,6 @@
 import {expect} from "chai"
 
-import {setEOLStyleFromOS} from "littoral-templates"
+import {setEOLStyleFromOS} from "littoral-templates-node"
 // (the following features are not exposed by the package, but for internal use only:)
 import {eol, eolStyles, setEOLExplicitly, splitOnEOL} from "littoral-templates/dist/index-internal.js"
 

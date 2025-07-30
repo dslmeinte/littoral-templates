@@ -28,6 +28,7 @@
     "private": true,
     "workspaces": [
         "./packages/littoral-templates",
+        "./packages/littoral-templates-node",
         "./packages/littoral-templates-test"
     ],
     "devDependencies": {

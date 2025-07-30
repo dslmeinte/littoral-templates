@@ -1,0 +1,27 @@
+{
+    "name": "littoral-templates-node",
+    "version": "0.4.2",
+    "description": "Node.js-specific addition to littoral-templates",
+    "license": "MIT",
+    "author": "Meinte Boersma",
+    "type": "module",
+    "main": "dist/index.js",
+    "types": "dist/index.d.ts",
+    "scripts": {
+        "clean": "rm -rf dist node_modules",
+        "build": "tsc",
+        "watch-build": "tsc --watch",
+        "lint": "eslint src",
+        "prep:pre-release": "npm run clean && npm install && npm run build",
+        "prerelease": "npm run prep:pre-release",
+        "release": "npm publish",
+        "prerelease-alpha": "npm run prep:pre-release",
+        "release-alpha": "npm publish --tag beta",
+        "prerelease-beta": "npm run prep:pre-release",
+        "release-beta": "npm publish --tag beta"
+    },
+    "dependencies": {
+        "@types/node": "24.1.0",
+        "littoral-templates": "0.4.2"
+    }
+}

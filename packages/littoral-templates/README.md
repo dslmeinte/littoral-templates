@@ -170,7 +170,7 @@ EOLs – AKA “newlines” or “line endings” – vary between OS’s: Windo
 Not taking that into account can cause content being generated differently across OS’s, potentially confusing tools like Git — especially if these are not configured correctly.
 Since generated content is often large, this causes additional confusion and friction in the software development process.
 
-To prevent such issues, you can set the EOL style by calling the `setEOLStyleFromOS` function before any calls to `asString`.
+To prevent such issues, you can set the EOL style by calling the `setEOLStyleFromOS` function (which resides in the separate `littoral-templates-node` package) before any calls to `asString`.
 The default value for the EOL style is `lf` – meaning `\n`.
 I’ll use the notation `<eol>` for the currently-set EOL value throughout the rest of the documentation.
 
