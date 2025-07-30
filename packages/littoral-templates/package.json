@@ -20,29 +20,16 @@
     "main": "dist/index.js",
     "types": "dist/index.d.ts",
     "scripts": {
+        "clean": "rm -rf dist node_modules",
         "build": "tsc",
         "watch-build": "tsc --watch",
-        "clean": "rm -rf dist node_modules",
-        "pretest": "npm run build",
-        "test": "mocha dist/test/*.js",
-        "watch-test": "mocha --watch dist/test/*.js",
         "lint": "eslint src",
-        "prep:pre-release": "npm run clean && npm install && npm test",
+        "prep:pre-release": "npm run clean && npm install && npm run build",
         "prerelease": "npm run prep:pre-release",
         "release": "npm publish",
         "prerelease-alpha": "npm run prep:pre-release",
         "release-alpha": "npm publish --tag beta",
         "prerelease-beta": "npm run prep:pre-release",
         "release-beta": "npm publish --tag beta"
-    },
-    "devDependencies": {
-        "@types/chai": "5.2.2",
-        "@types/mocha": "10.0.10",
-        "@types/node": "18.19.112",
-        "@typescript-eslint/eslint-plugin": "6.21.0",
-        "@typescript-eslint/parser": "6.21.0",
-        "chai": "5.2.0",
-        "mocha": "10.8.2",
-        "typescript": "5.3.3"
     }
 }

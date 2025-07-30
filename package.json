@@ -17,6 +17,7 @@
     },
     "homepage": "https://github.com/dslmeinte/littoral-templates#readme",
     "scripts": {
+        "clean": "npm run clean -w packages --if-present",
         "build": "npm run build -w packages --if-present",
         "test": "npm test -w packages --if-present",
         "lint": "npm run lint -w packages --if-present",
@@ -26,6 +27,12 @@
     },
     "private": true,
     "workspaces": [
-        "./packages/littoral-templates"
-    ]
+        "./packages/littoral-templates",
+        "./packages/littoral-templates-test"
+    ],
+    "devDependencies": {
+        "@typescript-eslint/eslint-plugin": "6.21.0",
+        "@typescript-eslint/parser": "6.21.0",
+        "typescript": "5.3.3"
+    }
 }

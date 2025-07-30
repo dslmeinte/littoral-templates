@@ -1,6 +1,6 @@
 import {expect} from "chai"
 
-import {asString, Template} from "../index-internal.js"
+import {asString, Template} from "littoral-templates"
 
 
 describe("asString", () => {

@@ -1,6 +1,6 @@
 import {expect} from "chai"
 
-import {asString, eol, when, withEmptyLineAppended} from "../index-internal.js"
+import {asString, when, withEmptyLineAppended} from "littoral-templates"
 
 
 describe("conditional inclusion - when syntax", () => {

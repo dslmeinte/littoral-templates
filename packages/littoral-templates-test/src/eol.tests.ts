@@ -1,6 +1,8 @@
 import {expect} from "chai"
 
-import {eol, eolStyles, setEOLExplicitly, setEOLStyleFromOS, splitOnEOL} from "../index-internal.js"
+import {setEOLStyleFromOS} from "littoral-templates"
+// (the following features are not exposed by the package, but for internal use only:)
+import {eol, eolStyles, setEOLExplicitly, splitOnEOL} from "littoral-templates/dist/index-internal.js"
 
 
 describe("EOL setting", () => {
