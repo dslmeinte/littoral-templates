@@ -6,13 +6,7 @@
     "target": "ES5",
     "module": "nodenext",
     "sourceMap": true,
-    "outDir": "dist",
+    "outDir": "packages/littoral-templates-test/dist",
     "lib": [ "ES2015" ]
-  },
-  "include": [
-    "src/**/*.ts"
-  ],
-  "exclude": [
-    "node_modules"
-  ]
+  }
 }

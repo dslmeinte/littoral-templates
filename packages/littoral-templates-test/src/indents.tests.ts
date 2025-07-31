@@ -1,6 +1,6 @@
 import {expect} from "chai"
 
-import {indentWith} from "../index-internal.js"
+import {indentWith} from "littoral-templates"
 
 
 describe("indentWith", () => {

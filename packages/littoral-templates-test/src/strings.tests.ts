@@ -1,6 +1,6 @@
 import {expect} from "chai"
 
-import {commaSeparated} from "../index-internal.js"
+import {commaSeparated} from "littoral-templates"
 
 
 describe("commaSeparated", () => {

@@ -3,7 +3,7 @@ export {
     commaSeparated,
     commonIndentations,
     indentWith,
-    setEOLStyleFromOS,
+    setEOLExplicitly,
     when,
     withEmptyLineAppended,
     withNewlineAppended     // (legacy alias)

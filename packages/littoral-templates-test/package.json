@@ -1,0 +1,28 @@
+{
+    "name": "littoral-templates-test",
+    "version": "0.4.2",
+    "description": "Unit tests for the littoral-templates package",
+    "license": "MIT",
+    "author": "Meinte Boersma",
+    "type": "module",
+    "scripts": {
+        "clean": "rm -rf dist node_modules",
+        "build": "tsc",
+        "watch-build": "tsc --watch",
+        "pretest": "npm run build",
+        "test": "mocha dist/**/*.js",
+        "watch-test": "mocha --watch dist/**/*.js",
+        "lint": "eslint src"
+    },
+    "dependencies": {
+        "littoral-templates": "*",
+        "littoral-templates-node": "*"
+    },
+    "devDependencies": {
+        "@types/node": "24.1.0",
+        "@types/chai": "5.2.2",
+        "@types/mocha": "10.0.10",
+        "chai": "5.2.0",
+        "mocha": "10.8.2"
+    }
+}

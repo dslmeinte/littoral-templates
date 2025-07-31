@@ -1,8 +1,14 @@
 # CHANGELOG
 
+## 0.5.0
+
+* Separated out `setEOLStyleFromOS` to a separate package `littoral-templates-node`.
+* Expose the `setEOLExplicitly` function.
+
+
 ## 0.4.2
 
-* Synchronous style of `setEOLStyleFromOS` caused problems with bundlers — in particular: Vite.
+* Synchronous style of `setEOLStyleFromOS` caused problems with web bundlers — in particular: Vite’s.
   That function is now asynchronous again, so should typically be `await`ed.
   It also should give warnings on the console when `setEOLStyleFromOS` is called when running in a browser.
 
